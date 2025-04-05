@@ -1,1306 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-	<!--====== Required meta tags ======-->
-	<meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-   
-    <!--Title-->
-	<title>宜蘭佳恩手工鍛造 |花窗 |大門 |扶手 |欄杆 |屏風 |精緻鐵件</title>
-
-	 <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-    <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!--====== Animate css ======-->
-    <link rel="stylesheet" href="assets/css/animate.css">   
-    <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">    
-    <!--====== Slick css ======-->
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <!--====== Line Icons css ======-->
-    <link rel="stylesheet" href="assets/css/LineIcons.css">
-    <!--====== Default css ======-->
-    <link rel="stylesheet" href="assets/css/default.css">
-    <!--====== Style css ======-->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!--====== Responsive css ======-->
-    <link rel="stylesheet" href="assets/css/responsive.css">
-
-    
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>保本出一半計算器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    .result {
+      background: #eef;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-	
+  <div class="container">
+    <h2>📈 保本出一半計算器</h2>
 
-    <!--====== PRELOADER PART START ======-->
-    
-    <div class="preloader">
-    	<div class="forge_logo">
-    		<img src="assets/images/logo.png" alt="佳恩手工鍛造"/>
-    		<p></p>
-    		<div class="spin">
-            <div class="cube1"></div>
-            <div class="cube2"></div>
-            </div>
-    	</div>
+    <label>方向</label>
+    <select id="direction">
+      <option value="long">做多</option>
+      <option value="short">做空</option>
+    </select>
+
+    <label>開倉價格</label>
+    <input type="number" id="entry" value="0.651" step="0.0001">
+
+    <label>停損價格</label>
+    <input type="number" id="stop" value="0.645" step="0.0001">
+
+    <label>選擇損失輸入方式</label>
+    <select id="lossType">
+      <option value="usd">輸入損失金額（美元）</option>
+      <option value="percent">輸入損失百分比（%）</option>
+    </select>
+
+    <div id="lossUsdContainer">
+      <label>預計總損失（美元）</label>
+      <input type="number" id="lossUsd" value="6.44" step="0.01">
     </div>
 
-     <header class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logo_300x160.png" alt="Logo" width="150" height="80">
-                        </a> <!-- Logo -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="bar-icon"></span>
-                            <span class="bar-icon"></span>
-                            <span class="bar-icon"></span>
-                        </button>
+    <div id="lossPercentContainer" style="display:none">
+      <label>預計損失百分比（%）</label>
+      <input type="number" id="lossPercent" value="2" step="0.1">
+    </div>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a data-scroll-nav="0" href="#home">首頁</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#product">產品介紹</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#service">服務項目</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#showcase">實作案例</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#team">關於佳恩</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#blog">工廠地址</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#contact">聯絡我們</a>
-                                </li>
-                            </ul> <!-- navbar nav -->
-                        </div>
-                    </nav> <!-- navbar -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    
-    <!--====== HEADER PART ENDS ======-->
+    <div class="result" id="output"></div>
+  </div>
 
-<!--====== SLIDER PART START ======-->
-    
-    <section id="home" class="slider-area pt-190">
-        <div class="container-fluid position-relative">
-            <div class="slider-active">
-                <div class="single-slider">
-                    <div class="slider-bg">
-                        <div class="row no-gutters align-items-center ">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="slider-product-image d-none d-md-block">
-                                    <img src="assets/images/slider/1.jpg" alt="Slider">
-                                    <div class="slider-discount-tag">
-                                        <p>The <br> BEST quality</p>
-                                    </div>
-                                </div> <!-- slider product image -->
-                            </div>
-                            <div class="col-lg-8 col-md-7">
-                                <div class="slider-product-content">
-                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">最「<span> 佳 </span>」 的品質,</h1>
-                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.9s">感「<span> 恩 </span>」 回饋給顧客。</h1>
-                                    <p class="mb-25-1" data-animation="fadeInUp" data-delay="1.5s">Dedicated to you the best quality products.</p>
-                                    <a class="main-btn" href="#" data-animation="fadeInUp" data-delay="2.1s">服務項目 <i class="lni-chevron-right"></i></a>
-                                </div> <!-- slider product content -->
-                            </div>
-                        </div> <!-- row -->
-                    </div> <!-- container -->
-                </div> <!-- single slider -->
+  <script>
+    const entryInput = document.getElementById('entry');
+    const stopInput = document.getElementById('stop');
+    const lossUsdInput = document.getElementById('lossUsd');
+    const lossPercentInput = document.getElementById('lossPercent');
+    const directionInput = document.getElementById('direction');
+    const lossTypeInput = document.getElementById('lossType');
+    const lossUsdContainer = document.getElementById('lossUsdContainer');
+    const lossPercentContainer = document.getElementById('lossPercentContainer');
+    const output = document.getElementById('output');
 
-                <div class="single-slider">
-                        <div class="slider-bg">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-lg-4 col-md-5">
-                                    <div class="slider-product-image d-none d-md-block">
-                                        <img src="assets/images/slider/3.jpg" alt="Slider">
-                                        <div class="slider-discount-tag">
-                                            <p>標籤 <br> Tag</p>
-                                        </div>
-                                    </div> <!-- slider product image -->
-                                </div>
-                                <div class="col-lg-8 col-md-7">
-                                    <div class="slider-product-content">
-                                        <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">什麼是<span> 鍛造? </span></h1>
-                                        <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">鍛造，<br>是金屬壓力加工的工藝，鐵經過一次次的錘打，焠鍊成不一樣的樣貌，就叫做「鍛造」。  
-                                        <p class="mb-25" data-animation="fadeInUp" data-delay="1.5s">透過鍛造能使鐵達到最高品質的美感，<br>讓鐵不只是能運用在生活中，也能成為賞心悅目的藝術品。</p>
-                                        <a class="main-btn" href="#" data-animation="fadeInUp" data-delay="2.1s">產品介紹 <i class="lni-chevron-right"></i></a>
-                                    </div> <!-- slider product content -->
-                                </div>
-                            </div> <!-- row -->
-                        </div> <!-- container -->
-                </div> <!-- single slider -->
+    function toggleLossInput() {
+      if (lossTypeInput.value === 'usd') {
+        lossUsdContainer.style.display = 'block';
+        lossPercentContainer.style.display = 'none';
+      } else {
+        lossUsdContainer.style.display = 'none';
+        lossPercentContainer.style.display = 'block';
+      }
+      calculate();
+    }
 
-                <div class="single-slider">
-                        <div class="slider-bg">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-lg-4 col-md-5">
-                                    <div class="slider-product-image d-none d-md-block">
-                                        <img src="assets/images/slider/2.jpg" alt="Slider">
-                                        <div class="slider-discount-tag">
-                                            <p>標籤 <br> Tag</p>
-                                        </div>
-                                    </div> <!-- slider product image -->
-                                </div>
-                                <div class="col-lg-8 col-md-7">
-                                    <div class="slider-product-content">
-                                        <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>標題</span></h1>
-                                        <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">我們提供任何客製化產品，<br> 歡迎前來參觀，或電話諮詢。<br>位置:宜蘭縣三星鄉中興三路166號</p>
-                                        <a class="main-btn" href="#contact" data-animation="fadeInUp" data-delay="1.5s">和我們聯絡<i class="lni-chevron-right"></i></a>
-                                    </div> <!-- slider product content -->
-                                </div>
-                            </div> <!-- row -->
-                        </div> <!-- container -->
-                </div> <!-- single slider -->
-            </div> <!-- slider active -->
-            <div class="slider-social">
-                <div class="row justify-content-end">
-                    <div class="col-lg-7 col-md-6">
-                        <ul class="social text-right">
-                            <li><a href="https://www.facebook.com/GodAndForging"><i class="lni-facebook-filled"></i></a></li>
-                            <li><a href="https://www.instagram.com/godandforging/"><i class="lni-instagram"></i></a></li>
-                            <li><a href="#"><i class="lni-line"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- container fluid -->
-    </section>
-    
-    <!--====== SLIDER PART ENDS ======-->
-   
-    <!--====== DISCOUNT PRODUCT PART START ======-->
- 
-    <section id="product-view" class="product-view pt-125">
-                
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="section-title2 text-center pb-25">
-                        <h3 class="title mb-15">服務流程</h3>
-                        <p class="title mb-40"></p>
-                        <p>Service Procedure</p>
-                    </div> 
-                </div>
-            </div> 
-        </div>
-        <div class="container process mt-30" >
-            <div class=" row justify-content-center ">
-                <div class="col-md-3 col-sm-7">
-                    <div class="single-services text-center mt-30">
-                        <div class="process-tag">
-                            <p>1</p>
-                        </div>
-                        <div class="services-icon">
-                            <i class="lni-ruler-pencil"></i>
-                        </div>
-                        <div class="services-content mt-20">
-                            <h5 class="title mb-10">丈量與規劃</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                        </div>
-                    </div>          
-                </div>
-                <div class="col-md-3 col-sm-7">
-                    <div class="single-services text-center mt-30 ">
-                        <div class="process-tag">
-                            <p>2</p>
-                        </div>
-                            <div class="services-icon">
-                                <i class="lni-hourglass"></i>
-                            </div>
-                            <div class="services-content mt-20">
-                                <h5 class="title mb-10">設計進行鍛造</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                            </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-7">
-                    <div class="single-services text-center mt-30 ">
-                        <div class="process-tag">
-                            <p>3</p>
-                        </div>
-                        <div class="services-icon">
-                            <i class="lni-restaurant"></i>
-                        </div>
-                        <div class="services-content mt-20">
-                            <h5 class="title mb-10">現場組裝</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-7">
-                    <div class="single-services text-center mt-30">
-                        <div class="process-tag">
-                            <p>4</p>
-                        </div>
-                        <div class="services-icon">
-                            <i class="lni-star-filled"></i>
-                        </div>
-                        <div class="services-content mt-20">
-                            <h5 class="title mb-10">工程完成</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>        
-        </div>
-            
-        <div id="product" class="container">
-            <div class="row justify-content-center pt-125">
-                <div class="col-lg-12">
-                    <div class="section-title2 text-center ">
-                        <h3 class="title mb-15">產品介紹</h3>
-                        <p class="title mb-40"></p>
-                        <p>Our Products</p>
-                    </div> 
-                </div>
-            </div> 
-        </div>
-    </section>
-    
-    <!--====== DISCOUNT PRODUCT PART ENDS ======-->
-   
-    <!--====== PRODUCT PART START ======-->
-    
-    <section class="product-area pt-100 pb-130">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-4">
-                    <div class="collection-menu text-center mt-30">
-                        <h4 class="collection-tilte">產品項目</h4>
-                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="active" id="v-pills-furniture-tab" data-toggle="pill" href="#v-pills-furniture" role="tab" aria-controls="v-pills-furniture" aria-selected="true">鍛造花窗</a>
-                            
-                            <a id="v-pills-decorative-tab" data-toggle="pill" href="#v-pills-decorative" role="tab" aria-controls="v-pills-decorative" aria-selected="false">庭院門 | 玄關門</a>
-                            
-                            <a id="v-pills-lighting-tab" data-toggle="pill" href="#v-pills-lighting" role="tab" aria-controls="v-pills-lighting" aria-selected="false">扶手 | 欄杆</a>
-                            
-                            <a id="v-pills-outdoor-tab" data-toggle="pill" href="#v-pills-outdoor" role="tab" aria-controls="v-pills-outdoor" aria-selected="false">屏風 | 雨遮</a>
-                            
-                            <a id="v-pills-storage-tab" data-toggle="pill" href="#v-pills-storage" role="tab" aria-controls="v-pills-storage" aria-selected="false">鍛造精緻作品</a>
-                        </div> <!-- nav -->
-                    </div> <!-- collection menu -->
-                </div>
-                <div class="col-lg-9 col-md-8">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-furniture" role="tabpanel" aria-labelledby="v-pills-furniture-tab">
-                            <div class="product-items mt-30">
-                                <div class="row product-items-active">
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">鍛造花窗</a></h5>
-                                                <!--
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$49.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                                -->
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">鍛造花窗</a></h5>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">鍛造花窗</a></h5>
-                                                
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                </div> <!-- row -->
-                            </div> <!-- product items -->
-                        </div> <!-- tab pane -->
+    function calculate() {
+      const entry = parseFloat(entryInput.value);
+      const stop = parseFloat(stopInput.value);
+      const direction = directionInput.value;
+      const lossType = lossTypeInput.value;
+      const buyFee = 0.0002;
+      const sellFee = 0.0004;
 
-                        <div class="tab-pane fade" id="v-pills-decorative" role="tabpanel" aria-labelledby="v-pills-decorative-tab">
-                            <div class="product-items mt-30">
-                                <div class="row product-items-active">
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                </div> <!-- row -->
-                            </div> <!-- product items -->
-                        </div> <!-- tab pane -->
+      let loss;
 
-                        <div class="tab-pane fade" id="v-pills-lighting" role="tabpanel" aria-labelledby="v-pills-lighting-tab">
-                            <div class="product-items mt-30">
-                                <div class="row product-items-active">
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                </div> <!-- row -->
-                            </div> <!-- product items -->
-                        </div> <!-- tab pane -->
+      let entryCost, stopNet;
 
-                        <div class="tab-pane fade" id="v-pills-outdoor" role="tabpanel" aria-labelledby="v-pills-outdoor-tab">
-                            <div class="product-items mt-30">
-                                <div class="row product-items-active">
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                </div> <!-- row -->
-                            </div> <!-- product items -->
-                        </div> <!-- tab pane -->
+      if (direction === "long") {
+        entryCost = entry * (1 + buyFee);
+        stopNet = stop * (1 - sellFee);
+      } else {
+        entryCost = entry * (1 - sellFee);
+        stopNet = stop * (1 + buyFee);
+      }
 
-                        <div class="tab-pane fade" id="v-pills-storage" role="tabpanel" aria-labelledby="v-pills-storage-tab">
-                            <div class="product-items mt-30">
-                                <div class="row product-items-active">
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single-product-items">
-                                            <div class="product-item-image">
-                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
-                                                <div class="product-discount-tag">
-                                                    <p>-60%</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-content text-center mt-30">
-                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
-                                                <ul class="rating">
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                    <li><i class="lni-star-filled"></i></li>
-                                                </ul>
-                                                <span class="regular-price">$59.00</span>
-                                                <span class="discount-price">$69.00</span>
-                                            </div>
-                                        </div> <!-- single product items -->
-                                    </div>
-                                </div> <!-- row -->
-                            </div> <!-- product items -->
-                        </div> <!-- tab pane -->
-                    </div> <!-- tab content --> 
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== PRODUCT PART ENDS ======-->
+      const perUnitLoss = Math.abs(entryCost - stopNet);
 
-    <!--====== SERVICES PART START ======-->
-    
-    <section id="service" class="services-area pt-125 pb-130">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-title pb-30">
-                        <h5 class="mb-15">Our service</h5>
-                        <h3 class="title mb-15">服務項目</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="services-left mt-45">
-                        <div class="services">
-                            <img src="assets/images/services/services.jpg" alt="">
-                            <a href="#" class="main-btn mt-30">Read More <i class="lni-chevron-right"></i></a>
-                        </div> <!-- services btn -->
-                    </div> <!-- services left -->
-                </div>
-                <div class="col-lg-6">
-                    
-                    <div class="services-right mt-45">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6 col-sm-8">
-                                <div class="single-services text-center">
-                                    <div class="services-icon">
-                                        <i class="lni-ruler-pencil"></i>
-                                    </div>
-                                    <div class="services-content mt-20">
-                                        <h5 class="title mb-10">丈量與規劃</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                                    </div>
-                                </div> <!-- single services -->
-                                
-                                <div class="single-services text-center mt-30">
-                                    <div class="services-icon">
-                                        <i class="lni-hourglass"></i>
-                                    </div>
-                                    <div class="services-content mt-20">
-                                        <h5 class="title mb-10">設計進行鍛造</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                                    </div>
-                                </div> <!-- single services -->
-                            </div>
-                            <div class="col-md-6 col-sm-8">
-                                <div class="single-services text-center mt-30">
-                                    <div class="services-icon">
-                                        <i class="lni-restaurant"></i>
-                                    </div>
-                                    <div class="services-content mt-20">
-                                        <h5 class="title mb-10">現場組裝</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                                    </div>
-                                </div> <!-- single services -->
-                                
-                                <div class="single-services text-center mt-30">
-                                    <div class="services-icon">
-                                        <i class="lni-star-filled"></i>
-                                    </div>
-                                    <div class="services-content mt-20">
-                                        <h5 class="title mb-10">工程完成</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
-                                    </div>
-                                </div> <!-- single services -->
-                            </div>
-                        </div> <!-- row -->
-                    </div> <!-- services right -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== SERVICES PART ENDS ======-->
+      if (lossType === 'usd') {
+        loss = parseFloat(lossUsdInput.value);
+      } else {
+        loss = entryCost * parseFloat(lossPercentInput.value) / 100;
+      }
 
-    <!--====== SHOWCASE PART START ======-->
-    
-    <section id="showcase" class="showcase-area pt-100 pb-130">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="showcase-title pt-25">
-                        <h2 class="title">實作案例</h2>
-                    </div> <!-- showcase title -->
-                </div> 
-                <div class="col-lg-6">
-                    <div class="showcase-title pt-25">
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo.</p>
-                    </div> <!-- showcase title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="showcase-active mt-65">
-                        <div class="single-showcase">
-                            <img src="assets/images/showcase/t-1.jpg" alt="Testimonial">
-                            <a href="#" class="main-btn">鍛造花窗</a>
-                        </div> <!-- single showcase -->
-                        <div class="single-showcase">
-                            <img src="assets/images/showcase/t-2.jpg" alt="Testimonial">
-                            <a href="#" class="main-btn">庭院大門</a>
-                        </div> <!-- single showcase -->
-                    </div> <!-- showcase active -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== SHOWCASE PART ENDS ======-->
+      const positionSize = loss / perUnitLoss;
+      const halfPosition = positionSize / 2;
 
-    <!--====== TEAM PART START ======-->
-    
-    <section id="team" class="team-area pt-125 pb-130">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section-title text-center pb-25">
-                        <h3 class="title mb-15">關於佳恩</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> 
+      let targetPrice;
+      if (direction === "long") {
+        targetPrice = (entryCost + (loss / 2 / halfPosition)) / (1 - sellFee);
+      } else {
+        targetPrice = (entryCost - (loss / 2 / halfPosition)) / (1 + buyFee);
+      }
 
-            <iframe src="https://www.powr.io/social-feed/u/2866c7a0_1617937947#platform=iframe" style="width:100%;" height="809px" frameborder="0"></iframe>
-           
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== TEAM PART ENDS ======-->
+      output.innerHTML = `
+        🔁 方向：<strong>${direction === 'long' ? '做多' : '做空'}</strong><br>
+        🧮 倉位總數量：<strong>${positionSize.toFixed(2)}</strong> 單位<br>
+        ➗ 每半倉位：<strong>${halfPosition.toFixed(2)}</strong> 單位<br>
+        🎯 保本出一半價格：<strong>${targetPrice.toFixed(5)}</strong><br>
+        ❌ 每單位停損損失：<strong>${perUnitLoss.toFixed(5)}</strong> 美元<br>
+        💸 預估總損失：<strong>${loss.toFixed(2)}</strong> 美元
+      `;
+    }
 
-    <!--====== TESTIMONIAL PART START ======-->
-    
-    <section id="testimonial" class="testimonial-area pt-200">
-        <div class="testimonial-bg bg_cover" style="background-image: url(assets/images/testimonial/ts-bg.jpg)"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-8">
-                    <div class="testimonial-content">
-                        <div class="testimonial-active">
-                            <div class="single-testimonial">
-                                <i class="lni-quotation"></i>
-                                <p class="mb-30">Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut labore et dolore magna aliqua.</p>
-                                <h6 class="title">Roma De Suza</h6>
-                                <span>- CEO, Tesla</span>
-                            </div> <!-- single testimonial -->
-                            <div class="single-testimonial">
-                                <i class="lni-quotation"></i>
-                                <p class="mb-30">Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut labore et dolore magna aliqua.</p>
-                                <h6 class="title">Lisa White</h6>
-                                <span>- Designer, Walmart</span>
-                            </div> <!-- single testimonial -->
-                        </div> <!-- testimonial active -->
-                    </div> <!-- testimonial content -->
-                </div>
-                <div class="col-lg-7 col-md-4">
-                    <div class="testimonial-play text-right d-none d-md-block">
-                        <a class="Video-popup" href="https://www.youtube.com/watch?v=l8ccw7BMrMA"><i class="lni-play"></i></a>
-                    </div> <!-- testimonial play -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== TESTIMONIAL PART ENDS ======-->
+    entryInput.addEventListener('input', calculate);
+    stopInput.addEventListener('input', calculate);
+    lossUsdInput.addEventListener('input', calculate);
+    lossPercentInput.addEventListener('input', calculate);
+    directionInput.addEventListener('change', calculate);
+    lossTypeInput.addEventListener('change', toggleLossInput);
 
-    <!--======  BLOG PART START ======-->
-    
-    <section id="blog" class="blog-area pt-125">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section-title text-center pb-25">
-                        <h3 class="title mb-15">工廠地址</h3>
-                        <span style="font-size:20px;">宜蘭縣三星鄉中興三路166號</span>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="address">
-            	<div class="map">
-           			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.9241305629753!2d121.69269371413641!3d24.695134684132135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3467e41df4edc01d%3A0xa7bb27c96c9431ce!2z5a6c6Jit5L2z5oGp5omL5bel6Y2b6YCg!5e0!3m2!1szh-TW!2stw!4v1617970544106!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy"></iframe>
-            	</div>
-            	<div class="map-detial"></div>
-            </div>
-        </div> <!-- container -->
-    </section>
-    
-    <!--======  BLOG PART ENDS ======-->
-
-    <!--====== CONTACT PART START ======-->
-    
-    <section id="contact" class="contact-area pt-115">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="contact-title text-center">
-                        <h2 class="title">聯絡我們</h2>
-                    </div> <!-- contact title -->
-                </div>
-            </div> <!-- row -->
-            <div class="contact-box mt-70">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="contact-info pt-25">
-                            <h4 class="info-title">聯絡方式</h4>
-                            <ul>
-                                <li>
-                                    <div class="single-info mt-30">
-                                        <div class="info-icon">
-                                            <i class="lni-phone-handset"></i>
-                                        </div>
-                                        <div class="info-content">
-                                            <p><a href="tel:+886-3-9568111">(03) 956-8111</a></p>
-                                        </div>
-                                    </div> <!-- single info -->
-                                </li>
-                                <li>
-                                    <div class="single-info mt-30">
-                                        <div class="info-icon">
-                                            <i class="lni-envelope"></i>
-                                        </div>
-                                        <div class="info-content">
-                                            <p>godandforging@gmail.com</p>
-                                        </div>
-                                    </div> <!-- single info -->
-                                </li>
-                                <li>
-                                    <div class="single-info mt-30">
-                                        <div class="info-icon">
-                                            <i class="lni-home"></i>
-                                        </div>
-                                        <div class="info-content">
-                                            <p>宜蘭縣三星鄉中興三路166號</p>
-                                        </div>
-                                    </div> <!-- single info -->
-                                </li>
-                            </ul>
-                        </div> <!-- contact info -->
-                    </div> 
-                    <div class="col-lg-8">
-                        <div class="contact-form">
-                            <form id="contact-form" method="post" data-toggle="validator">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="single-form form-group">
-                                            <input id="name" type="text" name="name" placeholder="姓名" data-error="*請填寫稱謂" required="required">
-                                            <div class="help-block with-errors"></div>
-                                        </div> <!-- single form -->
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="single-form form-group">
-                                            <input id="tel" type="tel" name="tel" placeholder="電話"  data-error="*請填寫連絡電話" required="required">
-                                            <div class="help-block with-errors"></div>
-                                        </div> <!-- single form -->
-                                    </div>
-                                    <br>
-                                    <div class="col-lg-12">
-                                        <div class="single-form form-group">
-                                            <input id="email" type="email" name="email" placeholder="Email"  data-error="*請填寫EMAIL" required="required">
-                                            <div class="help-block with-errors"></div>
-                                        </div> <!-- single form -->
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single-form form-group">
-                                            <textarea id="message" name="message" placeholder="請填寫諮詢內容" data-error="請留下諮詢內容" required="required"wrap="physical" ></textarea>
-                                            <div class="help-block with-errors"></div>
-                                        </div> <!-- single form -->
-                                    </div>
-                                    <p class="form-message"></p>
-                                    <div class="col-lg-12">
-                                        <div class=" form-group">
-                                            
-                                             <!--<input class="main-btn"  type="button" value="確認送出new" onclick="sendEmail()">-->
-                                             <button class="main-btn mt-30" onclick="sendEmail()">確認送出</button>
-                                             <input class="main-btn mt-30 ml-10" type="reset" value="清除">
-                                        </div> <!-- single form -->
-                                    </div>
-                                </div> <!-- row -->
-                            </form>
-                        </div> <!-- row -->
-                    </div> 
-                </div> <!-- row -->
-            </div> <!-- contact box -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== CONTACT PART ENDS ======-->
-
-    <!--====== FOOTER PART START ======-->
-    
-    <section id="footer" class="footer-area">
-        <div class="container">
-            <div class="footer-widget pt-75 pb-120">
-                <div class="row">
-                    <div class="col-lg-3 col-md-5 col-sm-7">
-                        <div class="footer-logo mt-40">
-                            <a href="#">
-                                <img src="assets/images/logo.png" alt="Logo">
-                            </a>
-                            <p class="mt-10">Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Laboriosam quae enim ea ex autem officiis illum, eligendi explicabo eum sit!</p>
-                            <ul class="footer-social mt-25">
-                                <li><a href="https://www.facebook.com/GodAndForging"><i class="lni-facebook-filled"></i></a></li>
-                                <li><a href="https://www.instagram.com/godandforging"><i class="lni-instagram"></i></a></li>
-                                <li><a href="#"><i class="lni-line"></i></a></li>
-                            </ul>
-                        </div> <!-- footer logo -->
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-5 item-Navbar">
-                        <div class="footer-link mt-50 " >
-                            <h5 class="f-title">鍛造產品</h5>
-                            <ul>
-                                <li><a href="#product">鍛造花窗</a></li>
-                                <li><a href="#">鍛造門 | 庭院門 | 玄關門</a></li>
-                                <li><a href="#">扶手 | 欄杆</a></li>
-                                <li><a href="#">屏風 | 雨遮</a></li>
-                                <li><a href="#">鍛造精緻鐵件 | 門牌 | 信箱</a></li>
-                                <li><a href="#">電動門</a></li>
-                            </ul>
-
-                        </div> <!-- footer link -->
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-5 item-Navbar">
-                        <div class="footer-link mt-50">
-                            <h5 class="f-title">服務項目</h5>
-                            <ul>
-                                <li><a href="#service">丈量與規劃</a></li>
-                                <li><a href="#">設計進行鍛造</a></li>
-                                <li><a href="#">現場組裝</a></li>
-                                <li><a href="#">工程完成</a></li>
-                                <li><a href="#"></a></li>
-                            </ul>
-                        </div> <!-- footer link -->
-                    </div>
-                    <div class="col-lg-4 col-md-5 col-sm-7">
-                        <div class="footer-info mt-50">
-                            <h5 class="f-title">聯絡資訊</h5>
-                            <ul>
-                                <li>
-                                    <div class="single-footer-info mt-20">
-                                        <span>電話 :</span>
-                                        <div class="footer-info-content">
-                                            <p>李老闆 <a href="tel:+886935041136">0935-041-136</a></p>
-                                            <p>老闆娘 <a href="tel:+886937680343">0937-680-343</a></p>
-                                        </div>
-                                    </div> <!-- single footer info -->
-                                </li>
-                                <li>
-                                    <div class="single-footer-info mt-20">
-                                        <span>Email :</span>
-                                        <div class="footer-info-content">
-                                            <p> godandforging@gmail.com</p>
-                                        </div>
-                                    </div> <!-- single footer info -->
-                                </li>
-                                <li>
-                                    <div class="single-footer-info mt-20">
-                                        <span>地址 :</span>
-                                        <div class="footer-info-content">
-                                            <p>宜蘭縣三星鄉中興三路166號</p>
-                                        </div>
-                                    </div> <!-- single footer info -->
-                                </li>
-                            </ul>
-                        </div> <!-- footer link -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- footer widget -->
-            <div class="footer-copyright pt-15 pb-15">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright text-center">
-                            <p> <a href="#" rel="nofollow"></a></p>
-                        </div> <!-- copyright -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!--  footer copyright -->
-        </div> <!-- container -->
-
-    </section>
-    
-    <!--====== FOOTER PART ENDS ======-->
-    
-    <!--====== BACK TO TOP PART START ======-->
-    
-    <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
-
-
-    
-    <!--====== BACK TO TOP PART ENDS ======-->
-    
-   <script type="text/javascript">
-
-        function sendEmail() {
-            var txt_name = document.getElementById('name').value
-            var txt_tel = document.getElementById('tel').value
-            var txt_email = document.getElementById('email').value
-            var msg = document.getElementById('message').value
-           // var frm = document.getElementById('contact-form')[0];
-
-            Email.send({
-                Host : "smtp.gmail.com",
-                Username : "godandforging@gmail.com",
-                Password : "ouklidyezjsvvxrb",
-                To : 'godandforging@gmail.com',
-                From : txt_email,
-                Subject : txt_name + " 的諮詢單",
-                Body : "<p></p><p></p>"+"<strong>姓　　名: </strong>" + txt_name 
-                + "<br>" + "<strong>聯絡電話: </strong>" + txt_tel  
-                + "<br>" + "<strong>E-mail : </strong>" + txt_email
-                + "<hr>" + "<strong>諮詢內容: </strong>" + "<br>" + msg
-            }).then(
-              message => alert("已接收諮詢單，我們會盡快聯繫您"),
-              document.getElementById('name').value="",
-              document.getElementById('tel').value="",
-              document.getElementById('email').value="",
-              document.getElementById('message').value=""
-            );event.preventDefault();
-
-        }
-        
-
-
-
-    </script>
-    
-    
-    
-    
-    
-    
-    
-    <!--====== jquery js ======-->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-
-    <!--====== Bootstrap js ======-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    
-    
-    <!--====== Slick js ======-->
-    <script src="assets/js/slick.min.js"></script>
-    
-    <!--====== Magnific Popup js ======-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-
-    
-    <!--====== nav js ======-->
-    <script src="assets/js/jquery.nav.js"></script>
-    
-    <!--====== Nice Number js ======-->
-    <script src="assets/js/jquery.nice-number.min.js"></script>
-    
-    <!--====== Main js ======-->
-    <script src="assets/js/main.js"></script>
-
-
+    toggleLossInput();
+  </script>
 </body>
 </html>
